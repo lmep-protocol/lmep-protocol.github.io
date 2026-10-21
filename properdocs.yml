@@ -1,0 +1,15 @@
+site_name: LMEP Specification
+site_url: http://localhost:8000/platform/latest
+theme: readthedocs
+markdown_extensions:
+  - toc:
+      permalink: true
+  - nl2br
+
+copyright: Copyright &copy Bahman Altamash. Unless otherwise specified, this documentation and its associated configuration files are licensed under CC BY 4.0. 
+
+nav:
+  - Spec: 
+    - About: about.md
+  - Coursework: 
+    - Analysis and Product Identification: cs-nea/analysis.md
