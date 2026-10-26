@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="http://localhost:8000/platform/latest/about/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>About - LMEP Specification</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var properdocs_page_name = "About";
+        var properdocs_page_input_path = "about.md";
+        var properdocs_page_url = "/platform/latest/about/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LMEP Specification
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Spec</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">About</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scope">Scope</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#why-another-instant-messaging-protocol">Why another Instant Messaging Protocol?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#why-not-irc">Why not IRC?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#why-not-xmpp">Why not XMPP?</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Coursework</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../cs-nea/analysis/">Analysis and Product Identification</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LMEP Specification</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Spec</li>
+      <li class="breadcrumb-item active">About</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="welcome-to-lmep">Welcome to LMEP<a class="headerlink" href="#welcome-to-lmep" title="Permanent link">&para;</a></h1>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>LMEP (Lightweight Message Exchange Protocol) is an instant messaging protocol for<br />
+persistent community messaging between users over a network.</p>
+<p>LMEP is language-agnostic, meaning that it can be implemented by clients and<br />
+servers written in different programming languages</p>
+<h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
+<p><code>Chathome</code></p>
+<blockquote>
+<p>A collection of related chatrooms managed by one or more admins</p>
+</blockquote>
+<p><code>Homeowner</code></p>
+<blockquote>
+<p>The manager/admin of a chathome</p>
+</blockquote>
+<p><code>Chatroom</code></p>
+<blockquote>
+<p>A logical channel within a home where messages may be exchanged</p>
+</blockquote>
+<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
+<p>This specification defines:</p>
+<ul>
+<li>The LMEP client-server architecture</li>
+<li>Connection and transport requirements</li>
+<li>Message framing</li>
+<li>Command syntax and server responses</li>
+<li>Structure of chatrooms</li>
+<li>Optional features</li>
+</ul>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<h3 id="why-another-instant-messaging-protocol">Why another Instant Messaging Protocol?<a class="headerlink" href="#why-another-instant-messaging-protocol" title="Permanent link">&para;</a></h3>
+<p>Because nothing out there sat right with me. The closest I could find were IRC<br />
+and XMPP, but they have a few major flaws or design philosophies I disagree with.</p>
+<h3 id="why-not-irc">Why not IRC?<a class="headerlink" href="#why-not-irc" title="Permanent link">&para;</a></h3>
+<p>IRC was originally created back in 1988 and is a tried and trusted protocol by many.<br />
+In fact, I created this protocol to act, not as a drop-in replacement to IRC, but<br />
+to serve as an alternative to it. IRC has some issues which make it unusable to<br />
+me, such as:</p>
+<ul>
+<li>IRC has no unique user identifications, and relies solely on nicknames to identify users, which can lead to nickname collisions</li>
+<li>There is a lack of modern features on IRC, such as replies, pinned messages, message histories and whatnot.</li>
+<li>Presence information is very limited. It is not formalised within IRC and only tracks basic user statuses and availability</li>
+<li>Encryption can be difficult to configure on the IRC client. Many channels allow you to connect over plaintext</li>
+</ul>
+<h3 id="why-not-xmpp">Why not XMPP?<a class="headerlink" href="#why-not-xmpp" title="Permanent link">&para;</a></h3>
+<p>XMPP is an excellent protocol that solves many of the shortcomings of IRC. However,<br />
+it has two major design decisions that I really don't agree with:</p>
+<ul>
+<li>Messages and other data sent over XMPP are structured as XML elements. LMEP is designed not to rely on XML because it creates major server overhead and uses up a lot of bandwidth</li>
+<li>XMPP is a general-purpose messaging protocol whose community messaging functionality is provided through MUC and other extensions. LMEP is purpose-built around persistent community messaging.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cs-nea/analysis/" class="btn btn-neutral float-right" title="Analysis and Product Identification">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy Bahman Altamash. Unless otherwise specified, this documentation and its associated configuration files are licensed under CC BY 4.0.</p>
+  </div>
+
+  Built with <a href="https://properdocs.org/">ProperDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../cs-nea/analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
