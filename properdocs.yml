@@ -1,12 +1,54 @@
 site_name: LMEP Specification
-site_url: http://localhost:8000/platform/latest
-theme: readthedocs
+site_url: https://lmep-protocol.github.io/
+repo_url: https://github.com/lmep-protocol/lmep-protocol.github.io
+theme:
+  font:
+    text: Lexend
+  features:
+    - content.footnote.tooltips
+    - content.tooltips
+    - navigation.instant
+    - navigation.instant.prefetch
+  topbar_style: glass   
+  name: materialx
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to system preference
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+      
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    
+  
 markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.blocks.caption
+  - abbr
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - nl2br
 
-copyright: Copyright &copy Bahman Altamash. Unless otherwise specified, this documentation and its associated configuration files are licensed under CC BY 4.0. 
+copyright: Copyright &copy Bahman Altamash. Unless otherwise specified, this specification and its associated configuration files are licensed under CC BY 4.0. 
 
 nav:
   - Spec: 

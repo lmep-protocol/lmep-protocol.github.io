@@ -9,16 +9,35 @@ As of 2026-27, this is also my coursework submission for A-level Computer Scienc
 Ensure you have the following installed:
 
 - git
-- properdocs
+- python
 
 Clone the repo:
 
 ```sh
-$ git clone https://github.com/lmep-protocol/lmep-protocol.github.io 
+$ git clone https://github.com/lmep-protocol/lmep-protocol.github.io lmep-protocol && cd lmep-protocol
 ```
 
-Then, host the site locally:
+Then, set up a virtual environment for Python
 
+```sh
+$ python -m venv .venv
+```
+
+Source the `activate` file:
+
+```sh
+$ source .venv/bin/activate
+or if you're on fish
+$ source .venv/bin/activate.fish
+```
+
+Then, install dependencies:
+
+```sh
+$ pip install -r requirements.txt
+```
+
+Once dependencies are installed, localhost the site:
 ```sh
 $ properdocs serve
 ```

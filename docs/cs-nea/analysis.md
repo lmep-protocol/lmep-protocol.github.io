@@ -37,7 +37,7 @@ The stakeholders of LMEP are important because they are the people that are affe
 ### My client
 
 Church is the main stakeholder of the LMEP protocol.
-He will be using an LMEP client to communicate with department managers through company-wide or executive chathomes.This is because one aim of the system is to have multiple chathomes under one server, meaning that departments do not interfere with each other when connected to the same server, each department will have its own chathome, and each chathome will be managed by its respective manager of said department (see below under Heads of Departments).
+He will be using an LMEP client to communicate with department managers through company-wide or executive chathomes. This is because one aim of the system is to have multiple chathomes under one server, meaning that departments do not interfere with each other when connected to the same server, each department will have its own chathome, and each chathome will be managed by its respective manager of said department (see below under Heads of Departments).
 Since he requires a system to ensure that employees can easily access announcements and other important information, I will need to implement a pinned messages feature, where such pinned messages are stored separately from regular messages, so that other LMEP clients can retrieve them by issuing commands (see below under LMEP Model) to the LMEP server. 
 Church will also need a way of organising messages and business decisions. For this reason, I will also implement a replies feature, where messages can directly reply to other messages so it is clear who is talking to whom.
 
@@ -58,3 +58,17 @@ To facilitate this, the reference implementation will have chatroom IDs to ident
 One problem I may run into is the level of technical literacy that employees in different departments may have. For example, employees in the sales department may be less technically inclined than their IT department counterparts. My solution to this is creating an implementation of the LMEP protocol with a simple frontend which abstracts the details of the LMEP protocol from clients so they can focus on sending messages on others. 
 To make sure that the employees have the necessary skills to navigate using an LMEP client, I will create comprehensive documentation which will be made available on this website. This will go into details about how to set up an LMEP client, but also the more technical details of LMEP for the more technically proficient. 
 Additionally, the reference client implementation will have an intuitive interface tested with representative users.
+
+## Research
+
+### Current Protocol Observation
+
+Cloudrain already uses an instant messaging protocol, known as Internet Relay Chat (IRC), which allows employees to communicate within and between departments. IRC is an open protocol[^1], and its specification can be found in [RFC 1459](https://www.rfc-editor.org/info/rfc1459/).
+
+![WeeChat](analysis_images/weechat.png)
+/// caption
+<small>WeeChat, a text-interface IRC Client. A popular choice for employees at Cloudrain</small>
+///
+
+
+[^1]: Open protocol meaning that it is openly accessible and usable by anyone, and its use is not restricted.

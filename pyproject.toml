@@ -1,0 +1,8 @@
+[project]
+name = "lmep-spec"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "mkdocs-materialx>=10.2.2",
+    "properdocs>=1.6.7",
+]
