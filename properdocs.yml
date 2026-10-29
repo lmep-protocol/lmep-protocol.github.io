@@ -15,7 +15,7 @@ theme:
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-auto
-        name: Switch to system preference
+        name: Switch to light mode
 
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -31,7 +31,7 @@ theme:
       accent: blue
       toggle:
         icon: material/weather-night
-        name: Switch to light mode
+        name: Switch to system preference
     
   
 markdown_extensions:

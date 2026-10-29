@@ -38,7 +38,7 @@ The stakeholders of LMEP are important because they are the people that are affe
 
 Church is the main stakeholder of the LMEP protocol.
 He will be using an LMEP client to communicate with department managers through company-wide or executive chathomes. This is because one aim of the system is to have multiple chathomes under one server, meaning that departments do not interfere with each other when connected to the same server, each department will have its own chathome, and each chathome will be managed by its respective manager of said department (see below under Heads of Departments).
-Since he requires a system to ensure that employees can easily access announcements and other important information, I will need to implement a pinned messages feature, where such pinned messages are stored separately from regular messages, so that other LMEP clients can retrieve them by issuing commands (see below under LMEP Model) to the LMEP server. 
+Since he requires a system to ensure that employees can easily access announcements and other important information, I will need to implement a pinned messages feature, where such pinned messages are stored separately from regular messages, so that other LMEP clients can retrieve them by issuing commands (see below under LMEP Model) to the LMEP server.
 Church will also need a way of organising messages and business decisions. For this reason, I will also implement a replies feature, where messages can directly reply to other messages so it is clear who is talking to whom.
 
 ### Heads of departments
@@ -55,13 +55,13 @@ For this reason, LMEP will require that each server issue each user within a cha
 The employees of Cloudrain are a stakeholder for this protocol. They will be using the reference implementation of LMEP to exchange messages. This will especially benefit the Records and Archives department because it means that employees of that department do not have to upgrade their hardware in order to communicate with other departments.
 They will be using the reference client implementation of LMEP to organise their messages into different chatrooms to modularise information.
 To facilitate this, the reference implementation will have chatroom IDs to identify a chatroom inside of a chathome. This is so that LMEP clients can send messages in a chatroom without messages in one chatroom appearing inside another.
-One problem I may run into is the level of technical literacy that employees in different departments may have. For example, employees in the sales department may be less technically inclined than their IT department counterparts. My solution to this is creating an implementation of the LMEP protocol with a simple frontend which abstracts the details of the LMEP protocol from clients so they can focus on sending messages on others. 
-To make sure that the employees have the necessary skills to navigate using an LMEP client, I will create comprehensive documentation which will be made available on this website. This will go into details about how to set up an LMEP client, but also the more technical details of LMEP for the more technically proficient. 
+One problem I may run into is the level of technical literacy that employees in different departments may have. For example, employees in the sales department may be less technically inclined than their IT department counterparts. My solution to this is creating an implementation of the LMEP protocol with a simple frontend which abstracts the details of the LMEP protocol from clients so they can focus on sending messages on others.
+To make sure that the employees have the necessary skills to navigate using an LMEP client, I will create comprehensive documentation which will be made available on this website. This will go into details about how to set up an LMEP client, but also the more technical details of LMEP for the more technically proficient.
 Additionally, the reference client implementation will have an intuitive interface tested with representative users.
 
 ## Research
 
-### Current Protocol Observation
+### Current Protocol Observation - Internet Relay Chat
 
 Cloudrain already uses an instant messaging protocol, known as Internet Relay Chat (IRC), which allows employees to communicate within and between departments. IRC is an open protocol[^1], and its specification can be found in [RFC 1459](https://www.rfc-editor.org/info/rfc1459/).
 
@@ -70,5 +70,80 @@ Cloudrain already uses an instant messaging protocol, known as Internet Relay Ch
 <small>WeeChat, a text-interface IRC Client. A popular choice for employees at Cloudrain</small>
 ///
 
+Having observed IRC's usage, I have come across some benefits and drawbacks:
+
+__Benefits:__
+
+* It is an open protocol
+* IRC allows for one-on-one private messages, outside of any channels, which allows messages to be sent and received privately between a sender and recipient.
+* IRC is decentralised, meaning that no single entity controls the network, allowing anyone to establish their own servers and channels
+
+__Drawbacks:__
+
+* IRC channels are not encrypted by default. Encryption can be difficult to configure on IRC clients and servers
+* IRC has no unique user identifications, which can cause nickname collisions[^2]
+* Features which people expect from modern instant messaging protocols, like presence information[^3], replying to messages, and retrieving messages when a user is away
 
 [^1]: Open protocol meaning that it is openly accessible and usable by anyone, and its use is not restricted.
+[^2]: Nickname collisions occur when a channel has more than one person with the same nickname, with no way to distinguish between the two
+[^3]: This is when a protocol allows clients to share whether a user is available, busy .etc
+
+__My thoughts on IRC:__
+
+IRC is a very mature platform, having existed since 1988. However, it was created with the needs of instant messaging back in 1988 in mind, which means that it lacks a lot of features people used to modern instant messaging would want from it. Whilst IRCv3 improves upon the original RFC 1459 specification greatly, the features that it adds are still not enough to facilitate modern instant messaging. For starters, IRCv3 still permits users to start on plaintext communication, then "upgrade" to a secure TLS connection. Servers do not enforce usage of TLS either, so messages are still sent over the internet in plaintext by default, which is a security nightmare as anyone with basic network monitoring tools can see what messages are sent over IRC.  
+
+### XMPP
+
+After looking at IRC, I decided to research XMPP[^4] to see how it compared with IRC, alongside the benefits and drawbacks of XMPP. Like IRC, XMPP is an open protocol. It is comprised of multiple specifications, most notable of which being [RFC 6121](https://www.rfc-editor.org/info/rfc6121/).
+
+![Gajim](analysis_images/gajim.png)
+
+/// caption
+<small>Gajim, an implementation of an XMPP client with a graphical frontend</small>
+///
+
+[^4]: Which stands for "eXtensible Messaging and Presence Protocol"
+
+After using and observing XMPP, I have come across some benefits and drawbacks:
+
+__Benefits:__
+
+* It is an open protocol.
+* XMPP has modern messaging features such as replies, presence informations and retrieves message histories when a user logs on after being away.
+* XMPP is extremely flexible. It is a flexible technology that can be used for content syndication, file-sharing, gaming, cloud computing and collaboration, alongside instant messaging.
+
+__Drawbacks:__
+
+* XMPP is very bloated, meaning that it has so many features that using it for persistent group messaging can feel a little overkill.
+* XMPP uses XML to encode messages, which adds a lot of server-side and client-side overhead as both the server and client have to encode and decode XML to exchange messages, requests and responses. This can cause noticeable performance issues and can consume a lot of bandwidth.
+* XMPP, by design, relies on extensions for most of its functionality. Most of XMPP's functionality comes from extensions, and managing extensions can be quite difficult.
+
+__My thoughts on XMPP:__
+
+XMPP is an excellent protocol, having existed since 1999. Although it might be old by internet standards, its features line up with what people would expect from modern instant protocols. However, the main issue of XMPP is just how many features are in XMPP. It has so many features that users report it feeling more like a general purpose protocol that just so happens to include instant messaging as one of its features. Additionally, it can be quite difficult to set up chatrooms with the purpose of persistent group messaging. More generally, XMPP is quite hard to configure, with specialised technical expertise being required to set up a federated XMPP server.
+
+### Matrix
+
+I also researched the Matrix protocol to see how it compared with IRC and XMPP. Like XMPP, it is an open standard, and it is a federated communication protocol for real-time communication. Its specification found on [the Matrix website](https://spec.matrix.org/latest/).
+
+![Element Web](analysis_images/element-web.png)
+
+/// caption
+Element web, a web implementation of the Matrix protocol
+///
+
+__Benefits:__
+
+* Matrix is an open standard. Matrix publishes its protocol specification and defines APIs for clients, homeservers and other applications, which lets independent implementation co-exist and interoperate without using the same application.
+* Matrix has detailed room permissions, allowing different users to have different permissions and power levels for actions such as sending messages and changing room configurations.
+* Matrix is decentralised and federated, which means that organisations can operate their own servers whilst communicating with users on other servers.
+
+__Drawbacks:__
+
+* Matrix has a large implementation complexity. It defines several APIs and a broad event-based architecture, rather than only a small set of messaging commands.
+* Matrix uses HTTP and structured JSON to format and send messages. This may introduce complexity and overhead for both the client and the server.
+* Data is replicated across Matrix servers. Servers participating in a chatroom keep local copies of its history and synchronise those copies, so messages may exist on multiple independently operated servers, which can complicate data deletion and confidentiality.
+
+__My thoughts on Matrix:__
+
+Matrix is another excellent protocol which does a lot of the things that LMEP is trying to achieve. However, Matrix is a very complex protocol which can be difficult to create an implementation of and use. Additionally, implementing a Matrix server also requires a server implementation of HTTP, which means that a server administrator would have to manage a HTTP server alongside a Matrix server.
