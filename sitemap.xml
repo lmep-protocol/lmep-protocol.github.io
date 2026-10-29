@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>http://localhost:8000/platform/latest/</loc>
-         <lastmod>2026-10-26</lastmod>
+        <loc>https://lmep-protocol.github.io/</loc>
+        <lastmod>2026-10-29</lastmod>
+        <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost:8000/platform/latest/about/</loc>
-         <lastmod>2026-10-26</lastmod>
+        <loc>https://lmep-protocol.github.io/about/</loc>
+        <lastmod>2026-10-29</lastmod>
+        <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://localhost:8000/platform/latest/cs-nea/analysis/</loc>
-         <lastmod>2026-10-26</lastmod>
+        <loc>https://lmep-protocol.github.io/cs-nea/analysis/</loc>
+        <lastmod>2026-10-29</lastmod>
+        <changefreq>daily</changefreq>
     </url>
 </urlset>
