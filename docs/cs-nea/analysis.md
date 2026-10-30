@@ -146,4 +146,42 @@ __Drawbacks:__
 
 __My thoughts on Matrix:__
 
-Matrix is another excellent protocol which does a lot of the things that LMEP is trying to achieve. However, Matrix is a very complex protocol which can be difficult to create an implementation of and use. Additionally, implementing a Matrix server also requires a server implementation of HTTP, which means that a server administrator would have to manage a HTTP server alongside a Matrix server.
+Matrix is another excellent protocol which does a lot of the things that LMEP is trying to achieve. However, Matrix is a very complex protocol which can be difficult to create an implementation of and use. Additionally, implementing a Matrix server also requires a server implementation of HTTP, which means that a server administrator would have to manage a HTTP server alongside a Matrix server. For the purposes of simple text and binary transfer, it is not only complicated to set up but Matrix implementation also have performance issues on older hardware, which can be a problem for Cloudrain employees.
+
+## Proposed Minimum Features
+
+These are the features that I concluded I must have in the LMEP specification (and therefore my reference implementations of the client and server) after doing research, as well as features that need to be included for LMEP to fulfill its purpose
+
+### Security Features
+
+* An LMEP server exposed to the public internet MUST support TLS[^5]. Consequently, these servers MUST block any attempt by clients to connect via plaintext. LMEP servers SHOULD use TLS v1.3[^6], with TLS v1.2[^7] as the minimum supported version. However, TLS will be optional for communications over a private network and for localhost development and testing.
+* Users must create credentials with an LMEP server, if it is the first time that they are doing so. Credentials consist of a username and password. When the user creates these credentials, the LMEP server must store these credentials as a database entry, and assign a UUIDv4[^8] number to them so that users, even with the same username, can be distinguished from each other users.
+* When a user creates credentials, they MUST send the password over the encrypted TLS channel, and the LMEP server must first hash the password before storing it in its database with a slow password hashing algorithm[^9]. Then, whenever the user logs in, the server hashes the password attempt and checks it against the stored password hash, only permitting to user to log in if the hashes match.
+
+[^5]: Transport Layer Security, a cybersecurity algorithm that encrypts network traffic and ensures that a server is who it says it is.
+[^6]: Specified in [RFC 8446](https://www.rfc-editor.org/info/rfc8446/)
+[^7]: Specified in [RFC 5246](https://www.rfc-editor.org/info/rfc5246/)
+[^8]: Specified in [Section 5.4 of RFC 9562](https://www.rfc-editor.org/info/rfc9562/#section-5.4)
+[^9]: Preferably Argon2id or scrypt, with bcrypt and PBKDF2 being used as acceptable legacy options
+
+### General Connection Features
+
+* The LMEP server and client must connect over a TCP/IP connection (as opposed to UDP). This is because TCP establishes a connection before transmitting application data using a three-way handshake. It also has error detections and provides mechanisms for orderly connection closure. Overall, TCP is a more appropriate choice than UDP for LMEP.
+* All messages (which may be referred to henceforth as message payloads) must be preceded with a 5-byte binary header. The first byte is the message type, and the latter four bytes are the message length in bytes.
+* The LMEP server must respond to each response from LMEP clients with a status code, followed by a human-readable phrase which describes the status code, similarly to FTP or HTTP.
+
+### Structural Features
+
+* The LMEP client and server must be aware of the hierarchial organisation system, which is: servers -> chathomes -> chatrooms. Messages must be identifiable on an LMEP server in the following format: `chathome-#chatroom-messageNumber` with the first message of a chatroom having a message number of 0. Within a chathome, messages must be identified simply as `#chatroom-messageNumber`
+* The LMEP client, once the user is in a chathome, must be able to query the server for available chatrooms within the chathome. The LMEP client must also be able to query the LMEP server for general information such as server uptime and its welcome message (the message issued to clients upon logging in)
+* The LMEP server MUST store the message history of each chatroom so that LMEP clients can retrieve them when a user logs back in after being offline for any period of time
+
+## Advanced features
+
+These features are extended requirements - features which improve usability, functionality and/or security but are not strictly necessary for the minimum viable implementation.
+
+* LMEP clients could have end-to-end encryption, where each client has keys to encrypt and decrypt messages. Only clients would be able to decrypt messages, so messages are stored on the server as ciphertext, protecting message contents if a server is compromised. This would also require forward secrecy too, which is protecting past messages from future compromises, which could be implemented by generating new keys based off existing agreed upon keys.
+* LMEP clients could send media as well as text. Messages with media would generally be distinguished from messages with text because they would have different message types. To conserve server resources, the owner of a chathome could also set limitations on how big each file can be and the total amount of storage files can use up
+* LMEP clients could have voice chatrooms as well as text chatrooms, which operate on different ports from the text chatrooms and use UDP instead of TCP, which could be useful for conferencing at Cloudrain.
+
+Again, these features are not strictly necessary for the minimum viable implementation. The provided reference implementations for LMEP will not include these advanced features due to constraints on time.
