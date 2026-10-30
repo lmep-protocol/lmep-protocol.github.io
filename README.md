@@ -1,6 +1,6 @@
 # LMEP Specification
 
-This is the repo containing the properdocs source for lmep-spec.github.io
+This is the repo containing the properdocs source for lmep-protocol.github.io
 
 As of 2026-27, this is also my coursework submission for A-level Computer Science.
 
@@ -23,11 +23,16 @@ Then, set up a virtual environment for Python
 $ python -m venv .venv
 ```
 
-Source the `activate` file:
+Source the `activate` file (if you're on bash/zsh):
 
 ```sh
 $ source .venv/bin/activate
-or if you're on fish
+```
+
+OR:
+
+Source the `activate` file (if you're on fish):
+```
 $ source .venv/bin/activate.fish
 ```
 
