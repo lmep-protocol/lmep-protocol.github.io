@@ -59,4 +59,5 @@ nav:
   - Spec: 
     - About: about.md
   - Coursework: 
+    - Glossary: cs-nea/glossary.md
     - Analysis and Product Identification: cs-nea/analysis.md

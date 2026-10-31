@@ -11,13 +11,13 @@ servers written in different programming languages
 ## Terminology
 
 `Chathome`
-> A collection of related chatrooms managed by one or more admins
+> An organisational unit hosted by an LMEP server. Each chathome maintains its own members, permissions and chatrooms.
 
 `Homeowner`
-> The manager/admin of a chathome
+> The owner of a chathome
 
 `Chatroom`
-> A logical channel within a home where messages may be exchanged
+> A logical channel within a home where messages can be exchanged
 
 ## Scope
 

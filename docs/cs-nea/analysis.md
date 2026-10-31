@@ -1,15 +1,5 @@
 # Analysis and Product Identification
 
-## Glossary
-
-Before I begin, I must define some terms this work uses to reduce ambiguity:
-
-^^__LMEP__^^ - Lightweight Message Exchange Protocol, the name of the protocol I am submitting.
-^^__Reference implementations__^^ - Alongside a specification for LMEP, there are also python programs which implement LMEP's minimum requirements to demonstrate its functionality beyond just words. Since LMEP is a client-server protocol, there will be an implementation for the client and an implementation for the server, the word "implementations" referring to both. These may also be referred to as "minimum viable implementation".
-^^__Chathome__^^ - An organisational unit hosted by an LMEP server. Each chathome maintains its own collection of chatrooms and members.
-^^__Chatroom__^^ - A communication space contained within a chathome. Each chatroom maintains its own message history.
-^^__Homeowner__^^ - The owner of a chathome.
-
 ## Statement of the Problem
 
 Cloudrain is a cloud storage provider. The CEO of Cloudrain, Marcus Church, and I had a meeting about the issue of communication between different departments, and he believes that the throughput of his company has been hindered by the labyrinth of different messaging protocols and platforms being used by different departments.
