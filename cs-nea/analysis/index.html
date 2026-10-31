@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://lmep-protocol.github.io/cs-nea/analysis/">
       
       
-        <link rel="prev" href="../../about/">
+        <link rel="prev" href="../glossary/">
       
       
       
@@ -406,6 +406,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -467,17 +495,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc">
-      
-        <li class="md-nav__item">
-  <a href="#glossary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Glossary
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#statement-of-the-problem" class="md-nav__link">
@@ -722,17 +739,6 @@
     <ul class="md-nav__list" data-md-component="toc">
       
         <li class="md-nav__item">
-  <a href="#glossary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Glossary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#statement-of-the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -953,13 +959,6 @@
 
 
 <h1 id="analysis-and-product-identification">Analysis and Product Identification<a class="headerlink" href="#analysis-and-product-identification" title="Permanent link">&para;</a></h1>
-<h2 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h2>
-<p>Before I begin, I must define some terms this work uses to reduce ambiguity:</p>
-<p><ins><strong>LMEP</strong></ins> - Lightweight Message Exchange Protocol, the name of the protocol I am submitting.<br />
-<ins><strong>Reference implementations</strong></ins> - Alongside a specification for LMEP, there are also python programs which implement LMEP's minimum requirements to demonstrate its functionality beyond just words. Since LMEP is a client-server protocol, there will be an implementation for the client and an implementation for the server, the word "implementations" referring to both. These may also be referred to as "minimum viable implementation".<br />
-<ins><strong>Chathome</strong></ins> - An organisational unit hosted by an LMEP server. Each chathome maintains its own collection of chatrooms and members.<br />
-<ins><strong>Chatroom</strong></ins> - A communication space contained within a chathome. Each chatroom maintains its own message history.<br />
-<ins><strong>Homeowner</strong></ins> - The owner of a chathome.</p>
 <h2 id="statement-of-the-problem">Statement of the Problem<a class="headerlink" href="#statement-of-the-problem" title="Permanent link">&para;</a></h2>
 <p>Cloudrain is a cloud storage provider. The CEO of Cloudrain, Marcus Church, and I had a meeting about the issue of communication between different departments, and he believes that the throughput of his company has been hindered by the labyrinth of different messaging protocols and platforms being used by different departments.<br />
 He thinks this is because different departments have varying degrees of technical proficiency and use a variety of different hardware.<br />
