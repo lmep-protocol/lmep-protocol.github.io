@@ -41,6 +41,11 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets
   - pymdownx.blocks.caption
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark 
+  - pymdownx.tilde
   - abbr
   - attr_list
   - md_in_html

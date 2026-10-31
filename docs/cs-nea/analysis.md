@@ -1,5 +1,15 @@
 # Analysis and Product Identification
 
+## Glossary
+
+Before I begin, I must define some terms this work uses to reduce ambiguity:
+
+^^__LMEP__^^ - Lightweight Message Exchange Protocol, the name of the protocol I am submitting.
+^^__Reference implementations__^^ - Alongside a specification for LMEP, there are also python programs which implement LMEP's minimum requirements to demonstrate its functionality beyond just words. Since LMEP is a client-server protocol, there will be an implementation for the client and an implementation for the server, the word "implementations" referring to both. These may also be referred to as "minimum viable implementation".
+^^__Chathome__^^ - An organisational unit hosted by an LMEP server. Each chathome maintains its own collection of chatrooms and members.
+^^__Chatroom__^^ - A communication space contained within a chathome. Each chatroom maintains its own message history.
+^^__Homeowner__^^ - The owner of a chathome.
+
 ## Statement of the Problem
 
 Cloudrain is a cloud storage provider. The CEO of Cloudrain, Marcus Church, and I had a meeting about the issue of communication between different departments, and he believes that the throughput of his company has been hindered by the labyrinth of different messaging protocols and platforms being used by different departments.
@@ -156,25 +166,29 @@ These are the features that I concluded I must have in the LMEP specification (a
 
 * An LMEP server exposed to the public internet MUST support TLS[^5]. Consequently, these servers MUST block any attempt by clients to connect via plaintext. LMEP servers SHOULD use TLS v1.3[^6], with TLS v1.2[^7] as the minimum supported version. However, TLS will be optional for communications over a private network and for localhost development and testing.
 * Users must create credentials with an LMEP server, if it is the first time that they are doing so. Credentials consist of a username and password. When the user creates these credentials, the LMEP server must store these credentials as a database entry, and assign a UUIDv4[^8] number to them so that users, even with the same username, can be distinguished from each other users.
+* The LMEP server must store the permissions a user has on a chathome, which must only be changed by the homeowner.
 * When a user creates credentials, they MUST send the password over the encrypted TLS channel, and the LMEP server must first hash the password before storing it in its database with a slow password hashing algorithm[^9]. Then, whenever the user logs in, the server hashes the password attempt and checks it against the stored password hash, only permitting to user to log in if the hashes match.
 
 [^5]: Transport Layer Security, a cybersecurity algorithm that encrypts network traffic and ensures that a server is who it says it is.
 [^6]: Specified in [RFC 8446](https://www.rfc-editor.org/info/rfc8446/)
 [^7]: Specified in [RFC 5246](https://www.rfc-editor.org/info/rfc5246/)
 [^8]: Specified in [Section 5.4 of RFC 9562](https://www.rfc-editor.org/info/rfc9562/#section-5.4)
-[^9]: Preferably Argon2id or scrypt, with bcrypt and PBKDF2 being used as acceptable legacy options
+[^9]: Preferably Argon2id or scrypt, with bcrypt and PBKDF2 as acceptable legacy options
 
 ### General Connection Features
 
 * The LMEP server and client must connect over a TCP/IP connection (as opposed to UDP). This is because TCP establishes a connection before transmitting application data using a three-way handshake. It also has error detections and provides mechanisms for orderly connection closure. Overall, TCP is a more appropriate choice than UDP for LMEP.
-* All messages (which may be referred to henceforth as message payloads) must be preceded with a 5-byte binary header. The first byte is the message type, and the latter four bytes are the message length in bytes.
+* All messages (which may be referred to henceforth as message payloads) must be preceded with a 5-byte binary header. The first byte is the message type[^10], and the latter four bytes are the message length in bytes.
 * The LMEP server must respond to each response from LMEP clients with a status code, followed by a human-readable phrase which describes the status code, similarly to FTP or HTTP.
+
+[^10]: In the minimum viable implementations, the message type field must always be set to `0x00` indicating that the message payload contains only UTF-8 encoded text. It serves no practical purpose for now but has been reserved for additional payload types. Support for these additional payload types, such as binary media, may be introduced in future versions of LMEP, but this is beyond the scope of LMEP in its submitted NEA form.
 
 ### Structural Features
 
 * The LMEP client and server must be aware of the hierarchial organisation system, which is: servers -> chathomes -> chatrooms. Messages must be identifiable on an LMEP server in the following format: `chathome-#chatroom-messageNumber` with the first message of a chatroom having a message number of 0. Within a chathome, messages must be identified simply as `#chatroom-messageNumber`
 * The LMEP client, once the user is in a chathome, must be able to query the server for available chatrooms within the chathome. The LMEP client must also be able to query the LMEP server for general information such as server uptime and its welcome message (the message issued to clients upon logging in)
 * The LMEP server MUST store the message history of each chatroom so that LMEP clients can retrieve them when a user logs back in after being offline for any period of time
+* The LMEP server MUST store presence information. The server should be the authoritative source of a user's presence information, storing it in the user's database entry, which the user changes through their LMEP client, which issues a request to the server to change this information.
 
 ## Advanced features
 
