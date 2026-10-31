@@ -696,6 +696,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#success-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -938,6 +949,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#success-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1105,6 +1127,13 @@ Additionally, the reference client implementation will have an intuitive interfa
 <li>LMEP clients could have voice chatrooms as well as text chatrooms, which operate on different ports from the text chatrooms and use UDP instead of TCP, which could be useful for conferencing at Cloudrain.</li>
 </ul>
 <p>Again, these features are not strictly necessary for the minimum viable implementation. The provided reference implementations for LMEP will not include these advanced features due to constraints on time.</p>
+<h2 id="success-criteria">Success Criteria<a class="headerlink" href="#success-criteria" title="Permanent link">&para;</a></h2>
+<p>I have devised the following targets to determine whether the LMEP protocol meets its intended purpose (to provide lightweight instant messaging functionality which can be implemented on legacy hardware):</p>
+<ul>
+<li>A complete LMEP specification must be produced, definining all <a href="#proposed-minimum-features">minimum viable features</a>, their requirements and expected behaviours</li>
+<li>Reference implementations of the LMEP client and server must be developed, implementing features in accordance with the specification</li>
+<li>The specification must exist on this site and the reference implementations must exist in one or more GitHub repositories under an open-source licence<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup>.</li>
+</ul>
 <div class="footnote">
 <hr />
 <ol>
@@ -1137,6 +1166,9 @@ Additionally, the reference client implementation will have an intuitive interfa
 </li>
 <li id="fn:10">
 <p>In the minimum viable implementations, the message type field must always be set to <code>0x00</code> indicating that the message payload contains only UTF-8 encoded text. It serves no practical purpose for now but has been reserved for additional payload types. Support for these additional payload types, such as binary media, may be introduced in future versions of LMEP, but this is beyond the scope of LMEP in its submitted NEA form.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>An open-source licence is any licence which meets the Open Source Initiative's <a href="https://opensource.org/definition-annotated">criteria</a> of open-source&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 11 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
