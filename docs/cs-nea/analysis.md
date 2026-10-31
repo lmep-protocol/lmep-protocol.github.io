@@ -189,3 +189,13 @@ These features are extended requirements - features which improve usability, fun
 * LMEP clients could have voice chatrooms as well as text chatrooms, which operate on different ports from the text chatrooms and use UDP instead of TCP, which could be useful for conferencing at Cloudrain.
 
 Again, these features are not strictly necessary for the minimum viable implementation. The provided reference implementations for LMEP will not include these advanced features due to constraints on time.
+
+## Success Criteria
+
+I have devised the following targets to determine whether the LMEP protocol meets its intended purpose (to provide lightweight instant messaging functionality which can be implemented on legacy hardware):
+
+* A complete LMEP specification must be produced, definining all [minimum viable features](#proposed-minimum-features), their requirements and expected behaviours
+* Reference implementations of the LMEP client and server must be developed, implementing features in accordance with the specification
+* The specification must exist on this site and the reference implementations must exist in one or more GitHub repositories under an open-source licence[^11].
+
+[^11]: An open-source licence is any licence which meets the Open Source Initiative's [criteria](https://opensource.org/definition-annotated) of open-source
