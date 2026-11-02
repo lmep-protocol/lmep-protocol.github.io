@@ -180,16 +180,6 @@ These are the features that I concluded I must have in the LMEP specification (a
 * The LMEP server MUST store the message history of each chatroom so that LMEP clients can retrieve them when a user logs back in after being offline for any period of time
 * The LMEP server MUST store presence information. The server should be the authoritative source of a user's presence information, storing it in the user's database entry, which the user changes through their LMEP client, which issues a request to the server to change this information.
 
-## Advanced features
-
-These features are extended requirements - features which improve usability, functionality and/or security but are not strictly necessary for the minimum viable implementation.
-
-* LMEP clients could have end-to-end encryption, where each client has keys to encrypt and decrypt messages. Only clients would be able to decrypt messages, so messages are stored on the server as ciphertext, protecting message contents if a server is compromised. This would also require forward secrecy too, which is protecting past messages from future compromises, which could be implemented by generating new keys based off existing agreed upon keys.
-* LMEP clients could send media as well as text. Messages with media would generally be distinguished from messages with text because they would have different message types. To conserve server resources, the owner of a chathome could also set limitations on how big each file can be and the total amount of storage files can use up
-* LMEP clients could have voice chatrooms as well as text chatrooms, which operate on different ports from the text chatrooms and use UDP instead of TCP, which could be useful for conferencing at Cloudrain.
-
-Again, these features are not strictly necessary for the minimum viable implementation. The provided reference implementations for LMEP will not include these advanced features due to constraints on time.
-
 ## Success Criteria
 
 I have devised the following targets to determine whether the LMEP protocol meets its intended purpose (to provide lightweight instant messaging functionality which can be implemented on legacy hardware):
